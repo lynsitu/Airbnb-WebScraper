@@ -36,17 +36,29 @@
 </html>
 
 <script>
-$(function(){
-    $("#checkin").datepicker({
-        dateFormat: "yy-mm-dd"
-    });
-});
+    $(document).ready(function () {
+        var dateFormat = "yy-mm-dd";
+        var maxStay = 28; // Maximum stay in days
 
-$(function(){
-    $("#checkout").datepicker({
-        dateFormat: "yy-mm-dd"
+        $("#checkin").datepicker({
+            dateFormat: dateFormat,
+            minDate: 0, // Restrict check-in date to today or future dates
+            onSelect: function (selectedDate) {
+                var minDate = new Date(selectedDate);
+                minDate.setDate(minDate.getDate() + 1); // Minimum check-out date is the day after check-in
+                var maxDate = new Date(selectedDate);
+                maxDate.setDate(maxDate.getDate() + maxStay); // Maximum check-out date
+
+                $("#checkout").datepicker("option", "minDate", minDate);
+                $("#checkout").datepicker("option", "maxDate", maxDate);
+            }
+        });
+
+        $("#checkout").datepicker({
+            dateFormat: dateFormat,
+            minDate: 1, // Restrict check-out date to the day after check-in
+        });
     });
-});
 
     function changeText() {
         var button = document.getElementById("load1");
