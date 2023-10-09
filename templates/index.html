@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -13,9 +16,9 @@
             <label>Enter the city/island:</label>
             <input type="text" name = "city" required/>
             <label>Enter checkin date:</label>
-            <input type="text" placeholder="Seperate with -, ex: 2023-03-12" name="checkin" required/>
+            <input type="text" placeholder="Seperate with -, ex: 2023-03-12" name="checkin" id="checkin" required/>
             <label>Enter checkout date:</label>
-            <input type="text" placeholder="Seperate with -, ex: 2023-03-12" name="checkout" required/>
+            <input type="text" placeholder="Seperate with -, ex: 2023-03-12" name="checkout" id="checkout" required/>
             <label>Enter the number of guests:</label>
             <input type="text" name="num_people" required/>
             <label>Enter the desired total price:</label>
@@ -33,6 +36,18 @@
 </html>
 
 <script>
+$(function(){
+    $("#checkin").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+});
+
+$(function(){
+    $("#checkout").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+});
+
     function changeText() {
         var button = document.getElementById("load1");
         var inputFields = document.querySelectorAll('input[required]');
