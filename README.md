@@ -2,6 +2,7 @@
 Create a airbnb scraper for listings with your targeted price using Python, flask and BeautifulSoup
 
 Deployed site: https://sea-lion-app-69ji4.ondigitalocean.app/
+Deployed site: https://airbnbwebscraper.online/
 
 
 
