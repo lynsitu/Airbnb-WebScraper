@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/back.css') }}">
+</head>
+  
+<!-- Adding some style to table -->
+<style type="text/css">
+    .headerRow {
+        background-color: lightsalmon;
+    }
+    .tb th {
+        color: blue;
+    }
+    tr:nth-of-type(2n){
+        border: 1px solid black;
+        background-color: rgba(150, 150, 150, 0.5);
+    }
+    td{
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+  
+<body>
+<div class="all-btn">
+<form action = "http://localhost:5000/" method = "GET">
+    <button type="submit" class="back-btn">Go Back</button>
+</form>
+
+<!-- Write a text and let the user know that "your input is invalid, can you please try again?" -->
+<h1 style="color: red; margin-left: 20px;">Your input is invalid, can you please try again?</h1>
+
