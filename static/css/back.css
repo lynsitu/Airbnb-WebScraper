@@ -1,3 +1,14 @@
+body {
+    background-image: url(bg.jpg);
+    background-size:contain;
+    background-color: blanchedalmond;
+    opacity: 0.95;
+}
+
+.tb {
+    background-color: white;
+}
+
 .all-btn {
     display: flex;
     justify-content: space-between;
