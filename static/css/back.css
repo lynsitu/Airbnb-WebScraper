@@ -1,6 +1,11 @@
 body {
     opacity: 0.9;
     background-color: #fae7bb;
+    background-image: url(bg.PNG);
+    background-attachment: fixed;
+    background-size: cover;
+    font-weight: bold;
+    background-repeat: no-repeat;
 }
 
 .tb {
