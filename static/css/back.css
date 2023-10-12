@@ -5,6 +5,7 @@ body {
     background-size: cover;
     font-weight: bold;
     background-repeat: no-repeat;
+    overflow: scroll;
 }
 
 .tb {
