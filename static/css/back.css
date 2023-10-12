@@ -1,8 +1,6 @@
 body {
-    background-image: url(bg.jpg);
-    background-size:contain;
-    background-color: blanchedalmond;
-    opacity: 0.95;
+    opacity: 0.9;
+    background-color: #967F33;
 }
 
 .tb {
