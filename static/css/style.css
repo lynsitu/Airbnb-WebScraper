@@ -3,12 +3,10 @@ body{
     background-color: white;
     background-image: url(bg.PNG);
     font-weight: bold;
-    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-weight: bold;
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    position: absolute;
 }
 
 .front_Page {
