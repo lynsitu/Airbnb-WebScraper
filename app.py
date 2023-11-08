@@ -104,14 +104,14 @@ def result():
                 ## price end
 
                 total_price = listing.find('div', class_= '_tt122m').text.split(" ")[0]
-                total_price_str = ""
+                reformat = [',', '$']
                 for char in total_price:
-                    if str.isnumeric(char):
-                        total_price_str += char
-                total_price_str = int(total_price_str)
+                    if char in reformat:
+                        total_price = total_price.replace(char,"")
+                total_price = int(total_price)
                 
                 # set the total price filter
-                if total_price_str < int(target_pri):
+                if total_price < int(target_pri):
                     master_list.append([name, desc, bed, rate, review, price_per_night, total_price, more_info])
         master_list.sort(key=lambda x: x[6])
         for i in master_list:
