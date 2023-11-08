@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template
 from bs4 import BeautifulSoup
 import requests
-# import json
 from datetime import date
  
 app = Flask(__name__)
@@ -43,25 +42,13 @@ def result():
         link_list = []
         master_list = []
 
-        ### travel date range end
-        # with open('city_state.json') as user_file:
-        #     parsed_json = json.load(user_file)
-        #     state = parsed_json[ci]
-        
-        # with open('state_abbr.json') as abbr_file:
-        #     parsed_json = json.load(abbr_file)
-        #     S = parsed_json[state]   
-
         if " " in ci:
             state_clean = ci.split(" ")
             city1 = state_clean[0]
             city2 = state_clean[1]
             website = f'https://www.airbnb.com/s/{city1}-{city2}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
-            # website = f'https://www.airbnb.com/s/{city1}-{city2}--{state}--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&query={city1}%20{city2}%2C%20{S}&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
         else:
             website = f'https://www.airbnb.com/s/{ci}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
-            # website = f'https://www.airbnb.com/s/{ci}--{state}--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&query={ci}%2C%20{S}&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
-
 
         while website:
             html_text = requests.get(website).content
@@ -121,10 +108,10 @@ def result():
                 for char in total_price:
                     if str.isnumeric(char):
                         total_price_str += char
+                total_price_str = int(total_price_str)
                 
                 # set the total price filter
-                # target_price = 1500
-                if int(total_price_str) < int(target_pri):
+                if total_price_str < int(target_pri):
                     master_list.append([name, desc, bed, rate, review, price_per_night, total_price, more_info])
         master_list.sort(key=lambda x: x[6])
         for i in master_list:
