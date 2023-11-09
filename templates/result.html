@@ -3,6 +3,7 @@
 <head>
 <!--     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/back.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
   
 <!-- Adding some style to table -->
@@ -36,17 +37,25 @@
 <button type="submit" class="download" id="exportButton"></onclick=>Download</button>
 </div>
 
-<table style="margin-left: 20px;" class="tb">
+<table id="myTable" style="margin-left: 20px;" class="tb">
 <!-- Table headers -->
     <!-- <th> -->
     <tr class="headerRow" id="hd">    
         <th>Name</th>
         <th>Description</th>
         <th>Beds</th>
-        <th>Rating</th>
-        <th>Review</th>
-        <th>Price per night</th>
-        <th>Total Price</th>
+        <th>Rating 
+          <i class="fa fa-sort" style="font-size:24px" onclick="sortTable(3)"></i>
+        </th>
+        <th>Review 
+          <i class="fa fa-sort" style="font-size:24px" onclick="sortTable(4)"></i>
+        </th>
+        <th>Nightly Price($) 
+          <i class="fa fa-sort" style="font-size:24px" onclick="sortTable(5)"></i>
+        </th>
+        <th>Total Price($) 
+          <i class="fa fa-sort" style="font-size:24px" onclick="sortTable(6)"></i>
+        </th>
         <th>List Link</th>
     </tr>
     <!-- </th> -->
@@ -60,10 +69,10 @@
         <td>{{name_list[i]}}</td>
         <td>{{desc_list[i]}}</td>
         <td>{{bed_list[i]}}</td>
-        <td>{{rate_list[i]}}</td>
-        <td>{{review_list[i]}}</td>
-        <td>{{unit_list[i]}}</td>
-        <td>${{total_list[i]}}</td>
+        <td style="text-align:center">{{rate_list[i]}}</td>
+        <td style="text-align:center">{{review_list[i]}}</td>
+        <td style="text-align:center">{{unit_list[i]}}</td>
+        <td style="text-align:center">{{total_list[i]}}</td>
         <td><a href="http://{{link_list[i]}}" target="_blank">airbnb link</a></td>   
     
     {% endfor %}
@@ -98,6 +107,45 @@
     a.click();
     document.body.removeChild(a);
 });
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  dir = "asc";
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      
+      x = rows[i].getElementsByTagName("td")[n];
+      y = rows[i + 1].getElementsByTagName("td")[n];
+
+      if (dir == "asc") {
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+        }
+      } else if (dir == "desc") {
+        if (Number(x.innerHTML) < Number(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    } 
+  } 
+}
 </script>
 
 </body>
