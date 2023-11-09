@@ -80,6 +80,14 @@ def result():
                     rate = rate_review.text.split(" ")[0]
                     review = rate_review.text.split(" ")[1]
                     review = review[1:-1]
+                 
+                if rate == 'New' or rate == 'None'or rate == None:
+                    rate = 0
+                
+                if review == 'None':
+                    review = 0
+                else:
+                    review = int(review)
                 ### rating session end
 
                 # ### bed&bath session start
@@ -101,10 +109,15 @@ def result():
                     price_per_night = price[0]
                 else:
                     price_per_night = price[1]
+
+                reformat = [',', '$',' ']
+                for char1 in price_per_night:
+                    if char1 in reformat:
+                        price_per_night = price_per_night.replace(char1,"")
+                price_per_night=int(price_per_night)
                 ## price end
 
                 total_price = listing.find('div', class_= '_tt122m').text.split(" ")[0]
-                reformat = [',', '$']
                 for char in total_price:
                     if char in reformat:
                         total_price = total_price.replace(char,"")
@@ -113,7 +126,7 @@ def result():
                 # set the total price filter
                 if total_price < int(target_pri):
                     master_list.append([name, desc, bed, rate, review, price_per_night, total_price, more_info])
-        master_list.sort(key=lambda x: x[6])
+        # master_list.sort(key=lambda x: x[6])
         for i in master_list:
             name_list.append(i[0])
             desc_list.append(i[1])
