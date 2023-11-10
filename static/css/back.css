@@ -1,12 +1,71 @@
 body {
     opacity: 0.9;
-    background-color: #fae7bb;
-    background-image: url(bg.PNG);
+    background-color: ivory;
+/*     background-image: url(bg.PNG); */
     background-size: cover;
     font-weight: bold;
     background-repeat: no-repeat;
     overflow: scroll;
 }
+
+.searchBar {
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+.form-control, .me-2 {
+    animation: slide 1s 1;
+  }
+  
+.me-2 {
+    display: none;
+  }
+
+  .form-control, .clear-2 {
+    animation: slide 1s 1;
+  }
+  
+.clear-2 {
+    display: none; 
+  }
+
+ .form-control, .me-1 {
+    animation: slide 1s 1;
+  }
+  
+.me-1 {
+    display: none; 
+  }
+
+
+  .form-control, .clear-1 {
+    animation: slide 1s 1;
+  }
+  
+.clear-1 {
+    display: none; 
+  }
+
+
+  .form-control, .me-3 {
+    animation: slide 1s 1;
+  }
+  
+.me-3 {
+    display: none; 
+  }
+
+  .form-control, .clear-3 {
+    animation: slide 1s 1;
+  }
+  
+.clear-3 {
+    display: none; 
+    text-align: center;
+  }
 
 .tb {
     background-color: white;
@@ -16,6 +75,13 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.all-btn {
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    border-radius: 50px;
+    border-color: black;
+}
 
 .back-btn {
     width: 150px;
@@ -24,13 +90,11 @@ body {
     margin-bottom: 10px;
     position: relative;
     padding: 8px 16px;
-    background: #009579;
-    border: none;
-    outline: none;
-    border-radius: 2px;
+    background: #b9e1a3;
+    border-radius: 50px;
+    border-color: black;
     cursor: pointer;
   }
-
 
 .download {
     width: 150px;
@@ -39,10 +103,9 @@ body {
     margin-bottom: 10px;
     position: relative;
     padding: 8px 16px;
-    background: #009579;
-    border: none;
-    outline: none;
-    border-radius: 2px;
+    background: #b9e1a3;
+    border-radius: 50px;
+    border-color: black;
     cursor: pointer;
   }
   
