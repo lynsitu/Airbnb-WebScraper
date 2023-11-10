@@ -41,9 +41,27 @@
 <!-- Table headers -->
     <!-- <th> -->
     <tr class="headerRow" id="hd">    
-        <th>Name</th>
-        <th>Description</th>
-        <th>Beds</th>
+        <th>Name
+            <i type="submit" class="fa fa-filter" onclick="showBar1()"></i>   
+            <div class = "searchBar">          
+                <input type="text" id="myInput0" onkeyup="filterName(0)" placeholder="Search.." class="me-1" />
+                <input type="button" onclick="resetSearch(0)" value="Clear" title="clear text" class="clear-1"/>
+            </div>
+        </th>
+        <th>Description
+            <i type="submit" class="fa fa-filter" onclick="showBar2()"></i>
+            <div class="searchBar">
+                <input type="text" id="myInput1" onkeyup="filterName(1)" placeholder="Search.." class="me-2"/>
+                <input type="button" onclick="resetSearch(1)" value="Clear" title="clear text" class="clear-2"/>
+            </div>
+        </th>
+        <th>Beds
+            <i type="submit" class="fa fa-filter" onclick="showBar3()"></i>
+            <div class="searchBar">
+                <input type="text" id="myInput2" onkeyup="filterName(2)" placeholder="Search.." class="me-3"/>
+                <input type="button" onclick="resetSearch(2)" value="Clear" title="clear text" class="clear-3"/>
+            </div>
+        </th>
         <th>Rating 
           <i class="fa fa-sort" style="font-size:24px" onclick="sortTable(3)"></i>
         </th>
@@ -107,6 +125,106 @@
     a.click();
     document.body.removeChild(a);
 });
+
+    let slideSearch1 = document.querySelector(".me-1");
+    let clearBtn1 = document.querySelector(".clear-1");
+    let slideSearch2 = document.querySelector(".me-2");
+    let clearBtn2 = document.querySelector(".clear-2");
+    let slideSearch3 = document.querySelector(".me-3");
+    let clearBtn3 = document.querySelector(".clear-3");
+
+    function showBar1() {
+        if (slideSearch1.style.display === "block") {
+            slideSearch1.style.display = "none";
+            clearBtn1.style.display = "none";
+        } else {
+            slideSearch1.style.display = "block";
+            clearBtn1.style.display = "block";
+        }
+    }
+
+    function showBar2() {
+        if (slideSearch2.style.display === "block") {
+            slideSearch2.style.display = "none";
+            clearBtn2.style.display = "none";
+        } else {
+            slideSearch2.style.display = "block";
+            clearBtn2.style.display = "block";
+        }
+    }
+
+    function showBar3() {
+        if (slideSearch3.style.display === "block") {
+            slideSearch3.style.display = "none";
+            clearBtn3.style.display = "none";
+        } else {
+            slideSearch3.style.display = "block";
+            clearBtn3.style.display = "block";
+        }
+    }
+    
+    // reset search function
+    function myFilterTable(n) {
+        var input, filter, table, tr, td, i, xtValue;
+        if (n==0) {
+            input = document.getElementById("myInput0");
+        } else if (n==1) {
+            input = document.getElementById("myInput1");
+        } else if (n==2) {
+            input = document.getElementById("myInput2");
+        }
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[n];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }
+        }
+    }
+
+    function resetSearch(n) {
+        if (n==0) {
+            var input = document.getElementById("myInput0");
+        } else if (n==1) {
+            var input = document.getElementById("myInput1");
+        } else if (n==2) {
+            var input = document.getElementById("myInput2");
+        }
+        input.value = '';
+        myFilterTable(n);
+    }
+
+    function filterName(n) {
+        var input, filter, table, tr, td, i, txtValue;
+        if (n == 0) {
+            input = document.getElementById("myInput0");
+        } else if (n == 1) {
+            input = document.getElementById("myInput1");
+        } else if (n == 2) {
+            input = document.getElementById("myInput2");
+        }
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[n];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+    }
 
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
