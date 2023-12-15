@@ -24,13 +24,13 @@ def result():
         else:
             ci = ci.capitalize()
 
-        checkin_all = checkin_date.split("-")
-        checkin_year, checkin_month, checkin_day = int(checkin_all[0]), int(checkin_all[1]), int(checkin_all[2])
-        dateFrom = date(checkin_year, checkin_month, checkin_day)
-        checkout_all = checkout_date.split("-")
-        checkout_year, checkout_month, checkout_day = int(checkout_all[0]), int(checkout_all[1]), int(checkout_all[2])
-        dateTo = date(checkout_year, checkout_month, checkout_day)
-        night = (dateTo-dateFrom).days
+        # checkin_all = checkin_date.split("-")
+        # checkin_year, checkin_month, checkin_day = int(checkin_all[0]), int(checkin_all[1]), int(checkin_all[2])
+        # dateFrom = date(checkin_year, checkin_month, checkin_day)
+        # checkout_all = checkout_date.split("-")
+        # checkout_year, checkout_month, checkout_day = int(checkout_all[0]), int(checkout_all[1]), int(checkout_all[2])
+        # dateTo = date(checkout_year, checkout_month, checkout_day)
+        # night = (dateTo-dateFrom).days
 
         name_list = []
         desc_list = []
@@ -46,10 +46,14 @@ def result():
             state_clean = ci.split(" ")
             city1 = state_clean[0]
             city2 = state_clean[1]
-            website = f'https://www.airbnb.com/s/{city1}-{city2}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
+        #     website = f'https://www.airbnb.com/s/{city1}-{city2}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
+        # else:
+        #     website = f'https://www.airbnb.com/s/{ci}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
+           
+            website = f'https://www.airbnb.com/s/{city1}-{city2}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
         else:
-            website = f'https://www.airbnb.com/s/{ci}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&price_filter_num_nights={night}&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
-
+            website = f'https://www.airbnb.com/s/{ci}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&price_filter_input_type=0&channel=EXPLORE&date_picker_type=calendar&checkin={checkin_date}&checkout={checkout_date}&source=structured_search_input_header&search_type=filter_change&adults={num_gue}'
+         
         while website:
             html_text = requests.get(website).content
             soup = BeautifulSoup(html_text, 'html.parser')
