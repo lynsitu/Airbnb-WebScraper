@@ -100,10 +100,10 @@ def result():
                 elif len(desc_beds) == 1:
                     bed = "N/A"
                 # bed = bed.replace(",","")
-                reform = [',', '·',' ']
+                reform = [',', '·']
                 for sym in bed:
                     if sym in reform:
-                        bed = bed.replace(sym,"+")
+                        bed = bed.replace(sym,"")
                 # ### bed&bath session end
                 
                 ### listing link session start
