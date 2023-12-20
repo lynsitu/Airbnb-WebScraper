@@ -103,7 +103,7 @@ def result():
                 reform = [',', '·',' ']
                 for sym in bed:
                     if sym in reform:
-                        bed = bed.replace(sym," & ")
+                        bed = bed.replace(sym,"+")
                 # ### bed&bath session end
                 
                 ### listing link session start
