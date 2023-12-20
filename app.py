@@ -65,20 +65,20 @@ def result():
             website = next_page
 
             # scraper starts here
-            listings = soup.find_all('div', class_ = 'c4mnd7m dir dir-ltr')
+            listings = soup.find_all('div', class_ = 'c4mnd7m atm_9s_11p5wf0 atm_dz_1osqo2v dir dir-ltr')
 
             for index, listing in enumerate(listings):
-                name = listing.find('div', class_ ='t1jojoys dir dir-ltr').text 
-                desc = listing.find('meta', itemprop ='name')['content']
+                name = listing.find('div', class_ ='t1jojoys atm_g3_1kw7nm4 atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_1vgr820 atm_7l_18pqv07 atm_cs_qo5vgd atm_w4_1eetg7c atm_ks_zryt35__1rgatj2 dir dir-ltr').text
+                desc = listing.find('span', class_ = 't6mzqp7 atm_g3_1kw7nm4 atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_7l_12u4tyr atm_am_qk3dho atm_ks_zryt35__1rgatj2 dir dir-ltr').text
                 desc = desc.replace(",","+")
 
                 ### rating session start
-                rate_review = listing.find('span', class_ ='r1dxllyb dir dir-ltr')
+                rate_review = listing.find('span', class_ ='r1dxllyb atm_7l_18pqv07 atm_cp_1ts48j8 dir dir-ltr')     
                 if rate_review == None:
-                    rate = listing.find('span', class_ ='r1dxllyb dir dir-ltr')
+                    rate = listing.find('span', class_ ='r1dxllyb atm_7l_18pqv07 atm_cp_1ts48j8 dir dir-ltr')
                     review = 'None'
                 elif rate_review.text == 'New':
-                    rate = listing.find('span', class_ ='r1dxllyb dir dir-ltr').text
+                    rate = listing.find('span', class_ ='r1dxllyb atm_7l_18pqv07 atm_cp_1ts48j8 dir dir-ltr').text
                     review = 'None'
                 else:
                     rate = rate_review.text.split(" ")[0]
@@ -87,7 +87,6 @@ def result():
                  
                 if rate == 'New' or rate == 'None'or rate == None:
                     rate = 0
-                
                 if review == 'None':
                     review = 0
                 else:
@@ -95,10 +94,10 @@ def result():
                 ### rating session end
 
                 # ### bed&bath session start
-                beds = listing.find_all('div',class_='fb4nyux s1cjsi4j dir dir-ltr')
-                if len(beds) == 2:
-                    bed = beds[1].text
-                elif len(beds) == 1:
+                desc_beds = listing.find_all('div',class_='fb4nyux atm_da_cbdd7d s1cjsi4j atm_g3_1kw7nm4 atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_7l_12u4tyr atm_ks_zryt35__1rgatj2 dir dir-ltr')
+                if len(desc_beds) == 2:
+                    bed = desc_beds[1].text
+                elif len(desc_beds) == 1:
                     bed = "N/A"
                 bed = bed.replace(",","")
                 # ### bed&bath session end
